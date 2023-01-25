@@ -29,6 +29,3 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
-      with:
-        fetch-depth: 0
-        projectBaseDir: nodejs-hello-world
