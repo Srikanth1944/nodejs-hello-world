@@ -21,4 +21,10 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag node-js-hello-world:$(date +%s)
+      run: docker build . --file Dockerfile --tag node-js-hello-world:latest
+    - name: Docker Push experitest-jnlp
+      run: docker push node-js-hello-world:latest
+    - name: SonarQube Scan
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}  
