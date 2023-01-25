@@ -24,8 +24,20 @@ jobs:
       run: docker build . --file Dockerfile --tag srikanth1944/node-js-hello-world:latest
     - name: Docker Push node-js-hello-world
       run: docker push srikanth1944/node-js-hello-world:latest
+
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting.
+        fetch-depth: 0
+        
+    # Triggering SonarQube analysis as results of it are required by Quality Gate check.
     - name: SonarQube Scan
-      uses: actions/checkout@v3
+      uses: SonarSource/sonarqube-scan-action@master
+      with:
+        projectBaseDir: .
       env:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
