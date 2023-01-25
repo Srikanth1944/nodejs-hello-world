@@ -25,6 +25,7 @@ jobs:
     - name: Docker Push experitest-jnlp
       run: docker push node-js-hello-world:latest
     - name: SonarQube Scan
+      uses: actions/checkout@v3
       with:
         host: ${{ secrets.SONARQUBE_HOST }}
         login: ${{ secrets.SONARQUBE_TOKEN }}  
