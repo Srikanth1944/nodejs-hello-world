@@ -21,9 +21,9 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag node-js-hello-world:latest
+      run: docker build . --file Dockerfile --tag srikanth1944/node-js-hello-world:latest
     - name: Docker Push node-js-hello-world
-      run: docker push node-js-hello-world:latest
+      run: docker push srikanth1944/node-js-hello-world:latest
     - name: SonarQube Scan
       uses: actions/checkout@v3
       with:
